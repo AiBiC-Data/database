@@ -46,3 +46,47 @@ ps - display currently active processes
 ps aux - detailed outputs
 kill pid - kill process with process id(pid)
 killall proc - kill all processes named proc
+
+## System Info
+
+date - show current date/time
+uptime - show uptime
+whoami - who you're logged in as
+w - display who is online
+cat /proc/cpuinfo - display cpu info
+cat /proc/meminfo - menory info
+free - show memory and swap usage
+du - show directory space usage
+du -sh - displays readable sizes in GB
+df - show disk usage
+uname -a - show karnel config
+
+## Compressing
+
+tar cf file.tar files - tar files into file.tar
+tar xf file.tar - untar into current directory
+tar tf file.tar - show contents of archive
+options:
+c - create archive j - bzip2 compression
+t - table of contents w - ask for comfirmation
+x - extract k - do not overwrite
+z - use zip/gzip T - files from file
+f - specify filename v - verbose
+
+## Permissions
+
+chmod octal file - change permissions of file
+4 - read(r)
+2 - write(w)
+1 - execute(x)
+order. owner/group/world
+chmod 777 - rwx for everyone
+chmod 755 - rw for owner, rx for group world
+
+## Some Others
+
+grep pattern files - search in files for pattern
+grep -r pattern dir - search for pattern recursively in dir
+locate file - find all instances of file
+whereis app - show possible localtions of app
+man command - show manual page for command
