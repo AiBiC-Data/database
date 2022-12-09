@@ -1,0 +1,138 @@
+'''
+  CREATE TABLE `user` (
+	`id`	Integer	NOT NULL primary key autoincrement,
+	`name`	text	NULL,
+	`address`	text	NULL,
+	`telnum`	string	NULL,
+	`enroll_date`	text	NULL
+);
+  '''
+'''
+CREATE TABLE `seller` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`user_id`	integer	NOT NULL,
+  FOREIGN KEY (user_id)
+       REFERENCES user (id)
+);
+  '''
+'''
+CREATE TABLE `customer` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`user_id`	integer	NOT NULL,
+  FOREIGN KEY (user_id)
+       REFERENCES user (id)
+);
+  '''
+'''
+CREATE TABLE `payment` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`payment`	integer	NULL,
+	`discount`	integer	NULL
+);
+  '''
+'''
+CREATE TABLE `delivery` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`status`	text	NULL,
+	`city`	text	NULL,
+	`street`	text	NULL,
+	`zipcode`	text	NULL
+);
+  '''
+'''
+CREATE TABLE `orders` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`customer_id`	integer	NOT NULL,
+	`delivery_id`	integer	NOT NULL,
+	`payment_id`	integer	NOT NULL,
+	`is_delete`	integer	NULL,
+  FOREIGN KEY (customer_id)
+       REFERENCES customer (id),
+  FOREIGN KEY (payment_id)
+       REFERENCES payment (id),
+  FOREIGN KEY (delivery_id)
+       REFERENCES delivery (id)
+);
+  '''
+'''
+CREATE TABLE `item_category` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`name`	text	NULL
+);
+  '''
+'''
+  CREATE TABLE `item` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	'name' text NULL,
+	`price`	integer	NULL,
+	`stock`	integer	NULL,
+	`seller_id`	integer	NOT NULL,
+	`category_id`	integer	NOT NULL,
+	`is_delete`	integer	NULL,
+  foreign key (seller_id) references seller (id),
+  foreign key (category_id) references item_category (id)
+);
+  '''
+CREATE TABLE `order_item` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`order_id`	integer	NOT NULL,
+	`item_id`	integer	NOT NULL,
+	`count`	integer	NULL,
+	`price`	integer	NULL,
+  foreign key (order_id) references orders (id),
+  foreign key (item_id) references item (id)
+);
+  '''
+'''
+  CREATE TABLE `activity_log` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`user_id`	integer	NOT NULL,
+	`log_date`	text	NULL,
+	`activity`	text	NULL,
+	`result`	text	NULL,
+  foreign key (user_id) references user (id)
+);
+  '''
+'''
+  CREATE TABLE `cpu` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`item_id`	integer	NOT NULL,
+	`manufacturing`	text	NULL,
+	`clock`	integer	NULL,
+	'model_name' text NULL,
+	`is_delete`	integer	NULL,
+  foreign key (item_id) references item (id)
+);
+  '''
+'''
+  CREATE TABLE `gpu` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`item_id`	integer	NOT NULL,
+	`manufacturing`	text	NULL,
+  'chipset' text NULL,
+  'model_name' text NULL,
+	`is_delete`	integer	NULL,
+  foreign key (item_id) references item (id)
+);
+  '''
+'''
+  CREATE TABLE `memory` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`item_id`	integer	NOT NULL,
+	`manufacturing`	text	NULL,
+	`capacity`	integer	NULL,
+	'model_name' text NULL,
+	`is_delete`	integer	NULL,
+  foreign key (item_id) references item (id)
+);
+  '''
+'''
+  CREATE TABLE `power` (
+	`id`	integer	NOT NULL primary key autoincrement,
+	`item_id`	integer	NOT NULL,
+	`manufacturing`	text	NULL,
+	`wattage`	integer	NULL,
+	`is_delete`	integer	NULL,
+  foreign key (item_id) references item (id)
+);
+  '''
